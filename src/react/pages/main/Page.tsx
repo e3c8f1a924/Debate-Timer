@@ -2,7 +2,7 @@ import Home from './Home'
 import './Page.css'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 
-function App() {
+function Page() {
 
   return (
     <HashRouter>
@@ -13,4 +13,4 @@ function App() {
   )
 }
 
-export default App
+export default Page
