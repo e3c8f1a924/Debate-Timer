@@ -13,7 +13,7 @@ function Home() {
                 <GridColumn>
                     <Header as='h3' className={styles.gridtitle}>开始</Header>
                     <ButtonGroup>
-                        <Button className={styles.gridbutton}>
+                        <Button className={styles.gridbutton} onClick={() => window.electronAPI.openFile()}>
                             <Icon name="folder open outline" className={styles.gridbuttonicon} size="huge"/>
                             打开
                         </Button>

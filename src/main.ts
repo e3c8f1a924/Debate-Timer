@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import path from 'path';
 import started from 'electron-squirrel-startup';
 
@@ -26,6 +26,10 @@ const createWindow = () => {
   } else {
     mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/pages/main.html`));
   }
+  
+  ipcMain.on('main:openfile', async () => {
+    await dialog.showOpenDialog({});
+  });
 };
 
 // This method will be called when Electron has finished
