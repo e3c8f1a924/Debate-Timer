@@ -22,7 +22,9 @@ function createMainWindow() {
   }
   
   ipcMain.on('main:openfile', async () => {
-    await dialog.showOpenDialog({});
+    let {canceled, filePaths} = await dialog.showOpenDialog({});
+    if (canceled) return;
+    mainWindow.webContents.send('main:loadfile', filePaths);
   });
 }
 

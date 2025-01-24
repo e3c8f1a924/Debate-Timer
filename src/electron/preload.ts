@@ -3,5 +3,6 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    openFile: () => ipcRenderer.send('main:openfile')
+    openFile: () => ipcRenderer.send('main:openfile'),
+    onLoadFile: (callback: (data: string[]) => Promise<void>) => ipcRenderer.on('main:loadfile', (_, data) => callback(data))
 })

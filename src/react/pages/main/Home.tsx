@@ -1,7 +1,22 @@
 import { Button, ButtonGroup, ButtonOr, Container, Grid, GridColumn, Header, Icon } from "semantic-ui-react";
 import styles from './Home.module.css';
+import { useContext, useEffect } from "react";
+import { DataContext } from "./DataContext";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+    let dataContext = useContext(DataContext);
+    if (!dataContext) return;
+    let [_, setData] = dataContext;
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        window.electronAPI.onLoadFile(async (data) => {
+            setData(data);
+            navigate('/debate');
+        })
+    })
+
     return (<>
         <Container className={styles.container}>
             <Header as='h1' className={styles.header}>Debate Timer</Header>
